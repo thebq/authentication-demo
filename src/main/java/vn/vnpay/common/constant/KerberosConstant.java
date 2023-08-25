@@ -25,4 +25,5 @@ public class KerberosConstant {
     public static final String LOGIN_URL = "/kerberos/login";
     public static final String TEST = "test";
     public static final String LAST_RUN = "lastRun";
+    public static final String KERBEROS = "kerberos";
 }

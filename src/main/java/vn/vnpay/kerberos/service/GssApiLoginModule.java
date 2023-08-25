@@ -9,6 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.ietf.jgss.GSSContext;
 import org.ietf.jgss.GSSCredential;
 import org.ietf.jgss.GSSManager;
+import vn.vnpay.common.constant.KerberosConstant;
 
 import javax.security.auth.Subject;
 import javax.security.auth.callback.Callback;
@@ -68,7 +69,7 @@ public class GssApiLoginModule implements LoginModule {
             throw new LoginException("No name available.");
         }
         subject.getPrincipals().add(new ClusterIdentityPrincipal(name));
-        subject.getPrincipals().add(new ClusterRolePrincipal("kerberos"));
+        subject.getPrincipals().add(new ClusterRolePrincipal(KerberosConstant.KERBEROS));
         return true;
     }
 

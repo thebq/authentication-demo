@@ -28,7 +28,7 @@ public class HazelcastService {
             log.info("Start ");
             // Create config and set the evaluation license key
             Config config = new Config().setLicenseKey(
-                    "ENTERPRISE_2020#10Nodes#ig8luOAwUDZqPY9Gf5ETQCKkHNXn6jyb20WBJmd1SM21910200091000100001102000111001000101012290");
+                    "ENTERPRISE_2023#jEszEuQ5exn6ojQPpkFfeeNm58Z6y8TT7K9zi5kfBhKcFcmRnvoNO7QNKhIt");
 
             // use TCP/IP cluster members discovery
             JoinConfig joinConfig = config.getNetworkConfig().getJoin();
@@ -41,7 +41,7 @@ public class HazelcastService {
             config.getSecurityConfig()
                     .setEnabled(true)
                     .addClientPermissionConfig(new PermissionConfig(PermissionConfig.PermissionType.ALL, "*", null))
-                    .setClientRealmConfig("kerberos",
+                    .setClientRealmConfig(KerberosConstant.KERBEROS,
                             new RealmConfig().setJaasAuthenticationConfig(jaasAuthenticationConfig));
 
             LoginContext lc = new LoginContext("HazelcastMember");
