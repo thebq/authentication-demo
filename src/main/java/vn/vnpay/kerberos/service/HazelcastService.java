@@ -25,10 +25,10 @@ public class HazelcastService {
         System.setProperty("java.security.auth.login.config", "jaas.conf");
         System.setProperty("java.security.krb5.conf", "krb5.conf");
         try {
-            log.info("Start ");
+            log.info("Start hazelcast service");
             // Create config and set the evaluation license key
             Config config = new Config().setLicenseKey(
-                    "ENTERPRISE_2023#jEszEuQ5exn6ojQPpkFfeeNm58Z6y8TT7K9zi5kfBhKcFcmRnvoNO7QNKhIt");
+                    "ENTERPRISE_2020#jEszEuQ5exn6ojQPpkFfeeNm58Z6y8TT7K9zi5kfBhKcFcmRnvoNO7QNKhIt");
 
             // use TCP/IP cluster members discovery
             JoinConfig joinConfig = config.getNetworkConfig().getJoin();
@@ -47,6 +47,7 @@ public class HazelcastService {
             LoginContext lc = new LoginContext("HazelcastMember");
             lc.login();
             Subject.doAs(lc.getSubject(), (PrivilegedAction<HazelcastInstance>) () -> Hazelcast.newHazelcastInstance(config));
+            log.info("Finish hazelcast service");
         } catch (Exception e) {
             log.error("Hazelcast receive response fail");
         }

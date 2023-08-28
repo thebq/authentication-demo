@@ -16,6 +16,7 @@ import java.util.Set;
 public class Authorization {
     public void InitiatorAuthentication() {
         try {
+            log.info("Start init authentication");
             System.setProperty("sun.security.krb5.debug", "true");
             System.setProperty("java.security.auth.login.config", "jaas.conf");
             System.setProperty("java.security.krb5.conf", "krb5.conf");
@@ -29,12 +30,14 @@ public class Authorization {
             KerberosTicket kt = (KerberosTicket) privateCredentials.iterator().next();
 
             Asn1.decodeAndDump(kt.getEncoded());
+            log.info("Start init authentication");
         } catch (Exception e) {
             log.error("Init authorization fail");
         }
     }
 
     public boolean AcceptorAuthentication() {
+        log.info("Start acceptor authentication");
         try {
             System.setProperty("sun.security.krb5.debug", "true");
             System.setProperty("java.security.auth.login.config", "jaas.conf");
@@ -42,6 +45,7 @@ public class Authorization {
 
             LoginContext lc = new LoginContext("KerberosAcceptorWithKeytab");
             lc.login();
+            log.info("Finish acceptor authentication");
             return lc.getSubject() != null;
         } catch (Exception e) {
             log.error("Acceptor authentication fail");
